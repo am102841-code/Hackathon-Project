@@ -6,6 +6,7 @@ console.log("RecycleRight is running!");
 const heading1 = document.querySelector("h1");
 const paragraphs = document.querySelectorAll(".description"); 
 const item = "metal";
+let item = prompt("What item are you scanning?"); 
 
 heading1.textContent = "Welcome to RecycleRight!";
 
