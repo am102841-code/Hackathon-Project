@@ -5,8 +5,10 @@ console.log("RecycleRight is running!");
 // Variables 
 const heading1 = document.querySelector("h1");
 const paragraphs = document.querySelectorAll(".description"); 
-const item = "metal";
-let item = prompt("What item are you scanning?"); 
+const itemInput = document.querySelector(".item-input");
+const camera = document.querySelector(".camera");
+const photoButton = document.querySelector(".photo-button")
+const canvas = document.querySelector(".snapshot");
 
 heading1.textContent = "Welcome to RecycleRight!";
 
@@ -31,6 +33,8 @@ paragraphs.forEach(function(paragraph, index) {
 
 // Function to check items and update paragraph text based on it 
 scanButton.addEventListener("click", function() {
+    let item = itemInput.value.trim().toLowerCase(); 
+    
     if (item === "plastic") {
         heading1.textContent = "The item is Plastic";
         paragraphs[0].textContent = "Plastic detected!";
@@ -48,4 +52,19 @@ scanButton.addEventListener("click", function() {
         paragraphs[0].textContent = "We couldn't identify this item.";
         paragraphs[1].textContent = "Try scanning again.";
     }
+});
+
+// getUserMedia() → requests camera/microphone access
+// stream → the live camera data
+// srcObject → connects that stream to the <video> element
+
+scanButton.addEventListener("click", function() {
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+            camera.srcObject = stream;
+        });
+});
+
+photoButton.addEventListener("click", function() {
+    // your code here
 });
