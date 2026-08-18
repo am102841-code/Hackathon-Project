@@ -65,6 +65,9 @@ scanButton.addEventListener("click", function() {
         });
 });
 
+// context.drawImage(source, x, y, width, height);
+
 photoButton.addEventListener("click", function() {
-    // your code here
+    const context = canvas.getContext("2d"); 
+    context.drawImage(camera, 0, 0, 400, 300);
 });
