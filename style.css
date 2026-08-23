@@ -1,6 +1,6 @@
 body {
     text-align: center;
-    background-color: #f0f7f0; 
+    background-color: #f0f7f0;
 }
 
 h1 {
@@ -9,9 +9,8 @@ h1 {
     font-family: 'Arial', sans-serif;
 }
 
-
-.position-test{
-    position: absolute; 
+.position-test {
+    position: absolute;
     top: 50px;
     left: 50px;
 }
@@ -19,58 +18,75 @@ h1 {
 .description {
     color: grey;
     font-size: 20px;
-    background-color: white; 
+    background-color: white;
     padding: 20px 50px;
-    border: 2px solid green; 
+    border: 2px solid green;
     margin: 20px;
-
 }
 
 .button-container {
     display: flex;
     justify-content: center;
-    gap: 25px; 
+    gap: 25px;
 }
 
 @media (max-width: 600px) {
     .button-container {
         flex-direction: column;
-        gap: 15px; 
+        gap: 15px;
     }
 }
 
 button {
-    width: 150px; 
+    width: 150px;
     height: 50px;
     font-size: 16px;
-    background-color: rgb(102, 171, 102);  
+    background-color: rgb(102, 171, 102);
     border: 2px solid green;
-    border-radius: 5px; 
+    border-radius: 5px;
 }
 
 button:hover {
-    background-color: rgb(76, 130, 76); 
-    cursor: pointer; 
+    background-color: rgb(76, 130, 76);
+    cursor: pointer;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease; 
-    font-size: 18px; 
+    transition: all 0.3s ease;
+    font-size: 18px;
 }
 
+/* Camera and snapshot layout */
 .camera-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
     margin: 20px;
 }
 
 .camera {
     width: 400px;
-    max-width: 90%;
-}
-
-.photo-button {
-    margin: 20px;
+    height: 300px;
+    max-width: 45%;
 }
 
 .snapshot {
     width: 400px;
     height: 300px;
     border: 2px solid green;
+}
+
+.photo-button {
+    margin: 20px;
+}
+
+/* Make the camera and snapshot stack on smaller screens */
+@media (max-width: 850px) {
+    .camera-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .camera,
+    .snapshot {
+        max-width: 90%;
+    }
 }

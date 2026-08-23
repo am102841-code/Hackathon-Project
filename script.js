@@ -9,6 +9,8 @@ const itemInput = document.querySelector(".item-input");
 const camera = document.querySelector(".camera");
 const photoButton = document.querySelector(".photo-button")
 const canvas = document.querySelector(".snapshot");
+canvas.style.display = "none"; 
+let cameraStream; 
 
 heading1.textContent = "Welcome to RecycleRight!";
 
@@ -59,10 +61,7 @@ scanButton.addEventListener("click", function() {
 // srcObject → connects that stream to the <video> element
 
 scanButton.addEventListener("click", function() {
-    navigator.mediaDevices.getUserMedia({ video: true })
-        .then(function(stream) {
-            camera.srcObject = stream;
-        });
+    startCamera(); 
 });
 
 // context.drawImage(source, x, y, width, height);
@@ -70,4 +69,18 @@ scanButton.addEventListener("click", function() {
 photoButton.addEventListener("click", function() {
     const context = canvas.getContext("2d"); 
     context.drawImage(camera, 0, 0, 400, 300);
+    canvas.style.display = "block"; 
+    cameraStream.getTracks().forEach(function(track) {
+        track.stop(); 
 });
+});
+
+
+
+function startCamera() {
+    navigator.mediaDevices.getUserMedia({ video: true })
+        .then(function(stream) {
+            cameraStream = stream; 
+            camera.srcObject = stream;
+        });
+}
