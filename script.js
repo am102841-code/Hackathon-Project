@@ -9,7 +9,8 @@ const itemInput = document.querySelector(".item-input");
 const camera = document.querySelector(".camera");
 const photoButton = document.querySelector(".photo-button")
 const canvas = document.querySelector(".snapshot");
-const retakeButton = document.querySelector(".retake-button") 
+const retakeButton = document.querySelector(".retake-button")
+const analyzeButton = document.querySelector(".analyze-button")  
 canvas.style.display = "none"; 
 let cameraStream; 
 
@@ -84,7 +85,15 @@ function startCamera() {
         });
 }
 
+// retakeButton 
+
 retakeButton.addEventListener("click", function() {
     canvas.style.display = "none"; 
     startCamera(); 
+});
+
+// analyzeButton
+
+analyzeButton.addEventListener("click", function() {
+
 });
