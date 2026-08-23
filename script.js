@@ -9,6 +9,7 @@ const itemInput = document.querySelector(".item-input");
 const camera = document.querySelector(".camera");
 const photoButton = document.querySelector(".photo-button")
 const canvas = document.querySelector(".snapshot");
+const retakeButton = document.querySelector(".retake-button") 
 canvas.style.display = "none"; 
 let cameraStream; 
 
@@ -72,10 +73,8 @@ photoButton.addEventListener("click", function() {
     canvas.style.display = "block"; 
     cameraStream.getTracks().forEach(function(track) {
         track.stop(); 
+    });
 });
-});
-
-
 
 function startCamera() {
     navigator.mediaDevices.getUserMedia({ video: true })
@@ -84,3 +83,8 @@ function startCamera() {
             camera.srcObject = stream;
         });
 }
+
+retakeButton.addEventListener("click", function() {
+    canvas.style.display = "none"; 
+    startCamera(); 
+});
