@@ -95,11 +95,18 @@ retakeButton.addEventListener("click", function() {
 // analyzeButton
 
 analyzeButton.addEventListener("click", function() {
+    let item = document.querySelector(".item-input").value.trim().toLowerCase();
     heading1.textContent = "Analyzing your item..."; 
     paragraphs[0].textContent = "Checking the photo for recyclable"; 
     paragraphs[1].textContent = "Please wait...";
 
     setTimeout(function () {
+        if (item == "plastic") {
+            heading1.textContent = "The item is Plastic";
+            paragraphs[0].textContent = "Plastic detected!";
+            paragraphs[1].textContent = "Check whether this type of plastic is recyclable.";
+        }
+
         heading1.textContent = "Analysis Complete!"
         paragraphs[0].textContent = "Your item has been analyzed."
         paragraphs[1].textContent = "Ready to show recycling information."
