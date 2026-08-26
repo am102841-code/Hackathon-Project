@@ -95,5 +95,15 @@ retakeButton.addEventListener("click", function() {
 // analyzeButton
 
 analyzeButton.addEventListener("click", function() {
+    heading1.textContent = "Analyzing your item..."; 
+    paragraphs[0].textContent = "Checking the photo for recyclable"; 
+    paragraphs[1].textContent = "Please wait...";
 
+    setTimeout(function () {
+        heading1.textContent = "Analysis Complete!"
+        paragraphs[0].textContent = "Your item has been analyzed."
+        paragraphs[1].textContent = "Ready to show recycling information."
+    }, 2000); 
 });
+
+
