@@ -13,12 +13,35 @@ const retakeButton = document.querySelector(".retake-button")
 const analyzeButton = document.querySelector(".analyze-button")  
 canvas.style.display = "none"; 
 let cameraStream; 
+let photoTaken = false; 
 
 heading1.textContent = "Welcome to RecycleRight!";
 
 
 // use document.querySelector to select elements or classes from the HTML file.
 const scanButton = document.querySelector(".scan-button"); 
+
+const Info = {
+    plastic: {
+        recyclable: true,
+        message: "Recycling just one plastic bottle saves enough energy to power a light bulb for 3 hours." 
+    },
+
+    glass: {
+        recyclable: true, 
+        message: "Rinse glass containers before putting them in the recycling bin."
+    },
+
+    metal: {
+        recyclable: true, 
+        message: "Metal is valuable because it can often be recycled repeatedly without losing its useful properties."
+    },
+
+    paper: {
+        recyclable: true, 
+        message: "Keep paper clean and dry before putting it in the recycling bin."
+    }
+};
 
 
 // Add an event listener to the scanButton that triggers an alert when clicked.
@@ -72,6 +95,7 @@ photoButton.addEventListener("click", function() {
     const context = canvas.getContext("2d"); 
     context.drawImage(camera, 0, 0, 400, 300);
     canvas.style.display = "block"; 
+    photoTaken = true; 
     cameraStream.getTracks().forEach(function(track) {
         track.stop(); 
     });
@@ -95,21 +119,42 @@ retakeButton.addEventListener("click", function() {
 // analyzeButton
 
 analyzeButton.addEventListener("click", function() {
+    if (photoTaken == false) {
+        heading1.textContent = "No photo"; 
+        paragraphs[0].textContent = "Please take a photo before analyzing"; 
+        alert("No photo. Please take a photo before analyzing");
+        return; 
+    }
     let item = document.querySelector(".item-input").value.trim().toLowerCase();
     heading1.textContent = "Analyzing your item..."; 
     paragraphs[0].textContent = "Checking the photo for recyclable"; 
     paragraphs[1].textContent = "Please wait...";
 
     setTimeout(function () {
-        if (item == "plastic") {
+        if (item === "plastic") {
             heading1.textContent = "The item is Plastic";
             paragraphs[0].textContent = "Plastic detected!";
             paragraphs[1].textContent = "Check whether this type of plastic is recyclable.";
         }
 
-        heading1.textContent = "Analysis Complete!"
-        paragraphs[0].textContent = "Your item has been analyzed."
-        paragraphs[1].textContent = "Ready to show recycling information."
+        else if (item === "glass") {
+            heading1.textContent = "The item is Glass"; 
+            paragraphs[0].textContent = "Glass detected!";
+            paragraphs[1].textContent = "Glass bottles and jars are easily recyclable."; 
+        }
+
+        else if (item === "metal") {
+            heading1.textContent = "The item is Metal"; 
+            paragraphs[0].textContent = "Metal detected!"; 
+            paragraphs[1].textContent = "Most types of metals can be recycled.";
+        }
+
+        else {
+            heading1.textContent = "Unknown Item"; 
+            paragraphs[0].textContent = "Please scan the item again";
+            paragraphs[1].textContent = "With a new view we can determine the proper measures.";
+        }
+
     }, 2000); 
 });
 
